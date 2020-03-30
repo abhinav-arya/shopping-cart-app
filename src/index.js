@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import ShoppingApp from './ShoppingApp';
+import ShoppingAppReducer from './reducers/ShoppingAppReducer'
+import './index.css'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 import * as serviceWorker from './serviceWorker';
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
+
+const store = createStore(ShoppingAppReducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <ShoppingApp />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
