@@ -18,6 +18,7 @@ class ShoppingList extends React.Component {
         }
     }
 
+    // handle change in price filter in the filter component
     handleFilterToggle = ((min, max) => {
         this.setState({
             filterRange: {
@@ -28,15 +29,13 @@ class ShoppingList extends React.Component {
         })
     })
 
+    // Update the cart store with the newly added/modified item
     handleClick = (id) => { 
-
-        // Update the cart store with the newly added/modified item
         this.props.actions.addToCart(id)
     }
 
+    // Fetch shopping list data from the service and update the redux store
     componentDidMount = () => {
-
-        // Fetch shopping list data from the service and update the redux store
         this.props.actions.fetchShoppingList()
     }
     
@@ -45,14 +44,16 @@ class ShoppingList extends React.Component {
         if (this.props.itemsFetchPending) {
             return (
                 <div>
-                    <h5>Please Wait...</h5>
+                    <br/>
+                    <h5> Please Wait...</h5>
                 </div>
             )
         }
         if (this.props.itemsFetchFailure) {
             return (
                 <div>
-                    <h5>Oops! Something went wront... <p>Server Response: "{this.props.itemsFetchError}"</p></h5>
+                    <br/>
+                    <h5>Oops! Something went wrong... <p>Server Response: "{this.props.itemsFetchError}"</p></h5>
                 </div>
             )
         }

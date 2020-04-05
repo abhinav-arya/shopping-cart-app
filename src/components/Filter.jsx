@@ -18,6 +18,9 @@ class Filter extends React.Component {
 
     componentDidUpdate = (prevState, props) => {
         
+        // set initial filter values based
+        //   set maximum filter value to the highest price in the item list
+        //   update these values only during init (filterUpdated check), else pick up values from component's state
         let maxValue = Math.max(...this.props.shopState.items.map(item => item.price))
         let minSelectedValue = this.state.filterUpdated ? this.state.value.min : 0
         let maxSelectedValue = this.state.filterUpdated ? this.state.value.max : maxValue
@@ -36,7 +39,6 @@ class Filter extends React.Component {
     }
 
     shouldComponentUpdate(prevState, props) {
-
         if (props.shopState === prevState.shopState) {
             return false
         }

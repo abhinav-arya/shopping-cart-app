@@ -10,7 +10,7 @@ import {
 
 const initState = {
     items: [],
-    itemsFetchPending: false,
+    itemsFetchPending: true,
     itemsFetchSuccess: false,
     itemsFetchFailure: false,
     itemsFetchError: '',
@@ -73,7 +73,7 @@ const ShoppingAppReducer = (state = initState, action) => {
                 itemsFetchSuccess: false,
                 itemsFetchFailure: true,
                 itemsFetchPending: false,
-                itemsFetchError: action.error.responseJSON.message
+                itemsFetchError: action.error.responseJSON ? action.error.responseJSON.message : "No Response from the API"
             }
         }
         case GET_SHOPPING_LIST_PENDING: {

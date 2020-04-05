@@ -7,6 +7,7 @@ export default function getShoppingList() {
             type: 'GET',
             url: 'https://api.myjson.com/bins/qzuzi',
             format: 'json',
+            cache: false,
             success: (response) => {
                 resolve(response)
             },
